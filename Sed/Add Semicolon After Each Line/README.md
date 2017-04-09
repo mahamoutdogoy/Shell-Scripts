@@ -1,4 +1,4 @@
-### Original content of text.txt:
+# Original content of text.txt:
 
 This is a test line number 1
 This is a test line number 2
@@ -11,9 +11,9 @@ This is a test line number 8
 This is a test line number 9
 This is a test line number 10
 
-### Output:
+# Output:
 
-# bash Add_Semicolon_After_Each_Line.sh
+### bash Add_Semicolon_After_Each_Line.sh
 
 This is a test line number 1;
 This is a test line number 2;
