@@ -12,8 +12,9 @@ This is a test line number 9
 This is a test line number 10
 ```
 # Output:
-
-### bash Add_Semicolon_After_Each_Line.sh
+```
+bash Add_Semicolon_After_Each_Line.sh
+```
 ```
 This is a test line number 1;
 This is a test line number 2;
