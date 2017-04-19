@@ -1,6 +1,6 @@
-#Inspired by the great Dave Taylor, thank you Dave!#
+# Inspired by the great Dave Taylor, thank you Dave! #
 
-##Example:##
+## Example: ##
 
 ```
 Please enter a command, which to be tested if in PATH:
