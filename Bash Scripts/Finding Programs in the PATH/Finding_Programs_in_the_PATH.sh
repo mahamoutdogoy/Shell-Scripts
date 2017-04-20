@@ -1,14 +1,13 @@
 #!/bin/bash
 
-enter_command() {
 echo "Please enter a command, which to be tested if in PATH:"
 echo
 
 read test_command
 
-	[[ -z $test_command ]] && echo "No command found, exiting..." && exit 123
-}
-enter_command
+[[ -z $test_command ]] && echo "No command found, exiting..." && exit 123
+
+
 
 path_dirs=(`echo $PATH | sed -e 's/\:/ /g'`)
 actual_command=`echo $test_command | sed -e 's/\// /g' | xargs -n1 | tac | sed -n '1p'`
