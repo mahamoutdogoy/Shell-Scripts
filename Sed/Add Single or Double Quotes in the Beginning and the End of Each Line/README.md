@@ -11,7 +11,7 @@ This is a test line number 8
 This is a test line number 9
 This is a test line number 10
 ```
-## Output:
+## Output (Double Quotes):
 
 ```
 bash Add_Double_Quotes_in_the_Beginning_and_the_End_of_Each_Line.sh
@@ -29,6 +29,7 @@ bash Add_Double_Quotes_in_the_Beginning_and_the_End_of_Each_Line.sh
 "This is a test line number 10"
 ```
 ```
+## Output (Single Quotes):
 bash Add_Single_Quotes_in_the_Beginning_and_the_End_of_Each_Line.sh
 ```
 ```
