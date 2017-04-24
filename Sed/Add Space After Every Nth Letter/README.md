@@ -11,7 +11,7 @@ Thisisatestlinenumber8
 Thisisatestlinenumber9
 Thisisatestlinenumber10
 ```
-## Output:
+## Output (Add space after the forth letter):
 ```
 bash Add_Space_After_Every_Nth_Letter.sh
 ```
