@@ -1,3 +1,3 @@
 #!/bin/bash 
 
-sed -e 's/\.[^\.]*$//'
+sed -e 's/\.[^\.]*$//' test.txt
