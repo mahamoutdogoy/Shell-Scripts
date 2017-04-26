@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Please enter a command, which to be tested if in PATH:"
+echo "Please enter a command, which to be tested if available in PATH:"
 echo
 
 read test_command
