@@ -1,4 +1,4 @@
-### A good demonstration of the embeded randomness utilities in Linux. 
+### A good demonstration of the built-in randomness utilities in Linux. 
 ### Starting the script 10 consecutive times: 
 ```
 for i in `seq 1 10` ; do bash Pick_a_Random_Card.sh ; done 
