@@ -1,4 +1,4 @@
-### Even though one should always use the ```rename``` utility, here's another approach to renaming files in the current directory: 
+### Even though one should always use the ```rename``` utility, here's another approach for renaming files in the current directory: 
 
 ### Directory content:
 ```
@@ -16,7 +16,7 @@ test_file_7
 test_file_8
 test_file_9
 ```
-### Rename them all with upper case:
+### Rename them all to upper case:
 ```
 bash Rename_Files_in_Upper_Case.sh
 
@@ -35,7 +35,7 @@ TEST_FILE_8
 TEST_FILE_9
 ```
 
-### Move them back in lower:
+### Move them back to lower:
 ```
 bash Rename_Files_in_Lower_Case.sh
 
