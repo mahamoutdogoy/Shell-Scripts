@@ -1,13 +1,9 @@
 #!/bin/bash
 
-echo "Please enter a command, which to be tested if available in PATH:"
-echo
-
+echo "Please enter a command, which to be tested if available in PATH:" ; echo
 read test_command
 
 [[ -z $test_command ]] && echo "No command found, exiting..." && exit 123
-
-
 
 path_dirs=(`echo $PATH | sed -e 's/\:/ /g'`)
 actual_command=`echo $test_command | sed -e 's/\// /g' | xargs -n1 | tac | sed -n '1p'`
@@ -29,10 +25,3 @@ else
 fi
 
 rm -f temp_file.txt
-
-
-
-
-
-
-
