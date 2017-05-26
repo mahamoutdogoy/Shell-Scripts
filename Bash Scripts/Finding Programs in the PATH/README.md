@@ -1,5 +1,5 @@
 ## Ruby version: ##
-### https://github.com/VladVelev/Ruby-Hacks/tree/master/Finding%20Programs%20in%20the%20PATH ### 
+https://github.com/VladVelev/Ruby-Hacks/tree/master/Finding%20Programs%20in%20the%20PATH ### 
 
 ## Example: ##
 
