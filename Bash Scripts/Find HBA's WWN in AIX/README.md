@@ -1,1 +1,3 @@
-## Find the WWN of the respective HBA in AIX
+### Summary:
+
+Finding the WWN of the respective HBA in AIX.
