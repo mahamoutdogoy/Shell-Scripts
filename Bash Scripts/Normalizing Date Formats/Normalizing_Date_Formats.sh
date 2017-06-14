@@ -22,6 +22,8 @@ fi
 
 if [[ `echo -n $3 | wc -m` -ne 4 ]] ; then 
     echo "`basename $0`: Four-digit year value expected." ; exit 1
+elif [[ `echo -n $3 | sed -e 's/[[:digit:]]//g' | wc -c` > 0 ]] ; then
+	echo "`basename $0`: Year value expected in digits." ; exit 1
 elif [[ "$2" -gt 31 ]] ; then
     echo "`basename $0`: Month value could not exceed 31." ; exit 1 
 elif [[ `echo -n $2 | wc -m` -gt 2 ]]; then
