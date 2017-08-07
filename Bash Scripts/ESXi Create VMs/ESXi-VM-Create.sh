@@ -1,13 +1,13 @@
 #!/bin/sh
 
 phelp() {
-        echo "Script for automatic Virtual Machine creation for ESX"
-        echo "Usage: ./create.sh options: n <|c|i|r|s>"
-        echo "Where n: Name of VM (required), c: Number of virtual CPUs, i: location of an ISO image, r: RAM size in MB, s: Disk size in GB"
-        echo "Default values are: CPU: 2, RAM: 4096MB, HDD-SIZE: 20GB"
+        echo "Please choose parameters for the new VM:"
+        echo "Usage: ./visteon_vm_setup.sh"
+        echo "Options: <|c|i|r|s> -n(name), -c(CPU), -i(Location of the ISO image), -r(RAM size in MB), -s(Storage in GB)"
+        echo "Default setup: CPU: 1, RAM: 1024MB, Storage: 20GB"
 }
 
-#Setting up some of the default variables
+
 CPU=1
 RAM=1024
 SIZE=20
@@ -15,12 +15,6 @@ ISO=""
 FLAG=true
 ERR=false
 
-#Error checking will take place as well
-#the NAME has to be filled out (i.e. the $NAME variable needs to exist)
-#The CPU has to be an integer and it has to be between 1 and 32. Modify the if statement if you want to give more than 32 cores to your Virtual Machine, and also email me pls :)
-#You need to assign more than 1 MB of ram, and of course RAM has to be an integer as well
-#The HDD-size has to be an integer and has to be greater than 0.
-#If the ISO parameter is added, we are checking for an actual .iso extension
 while getopts n:c:i:r:s: option
 do
         case $option in
