@@ -165,9 +165,9 @@ MYVM=`vim-cmd solo/registervm /vmfs/volumes/datastore1/${NAME}/${NAME}.vmx`
 
 #Starting the virtual machine:
 
-vim-cmd vmsvc/power.on $MYVM
+#vim-cmd vmsvc/power.on $MYVM
 
-echo "The Virtual Machine is now setup & the VM has been started up. Your have the following configuration:"
+echo "The Virtual Machine is now set with the following configuration:"
 echo "Name: ${NAME}"
 echo "CPU: ${CPU}"
 echo "RAM: ${RAM}"
@@ -176,7 +176,7 @@ echo "HDD-size: ${SIZE}"
 if [ -n "$ISO" ]; then
         echo "ISO: ${ISO}"
 else
-        echo "No ISO added."
+        echo "No ISO image added."
 fi
 
 exit 0
