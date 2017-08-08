@@ -1,12 +1,20 @@
 #!/bin/sh
 
 help_me() {
+        echo "Usage: ./visteon_vm_setup.sh <parameters>"
+        echo
         echo "Please choose parameters for the new VM:"
-        echo "Usage: ./visteon_vm_setup.sh"
-        echo "Options: 'c|i|r|s': -n(name), -c(CPU), -i(Location of the ISO image), -r(RAM size in MB), -s(Storage in GB)"
+        echo "-n: Choose a name"
+        echo "-c: Choose CPU count"
+        echo "-i: Add ISO image location"
+        echo "-r Add RAM size in MB"
+        echo "-s Add storage size in GB"
+        echo
         echo "Default setup: CPU: 1, RAM: 1024MB, Storage: 20GB"
+        echo
 }
 
+### Default Setup: ###
 
 CPU=1
 RAM=1024
@@ -15,7 +23,9 @@ ISO=""
 FLAG=true
 ERR=false
 
-while getopts n:c:i:r:s: parameter
+######################
+
+while getopts n:c:i:r:s:h parameter
 do
         case $parameter in
                 n)
@@ -69,14 +79,24 @@ do
                                 MSG="$MSG | The HDD size has to be an integer."
                         fi
                         ;;
-                \?) echo "Unknown parameter: -$OPTARG" >&2; help_me; exit 1;;
-                :) echo "Missing parameter argument for -$OPTARG" >&2; help_me; exit 1;;
-                *) echo "Unimplimented parameter: -$OPTARG" >&2; help_me; exit 1;;
+
+                h)      help_me ; exit ;;
+
+                \?)
+                        echo "Unknown parameter: -$OPTARG" >&2
+                        help_me
+                        exit 1;;
+
+                :)      echo "Missing parameter argument for -$OPTARG" >&2; help_me; exit 1;;
+
+                *)      echo "Unimplimented parameter: -$OPTARG" >&2; help_me; exit 1;;
         esac
 done
 
 if $FLAG; then
-        echo "You need to at least specify the name of the machine with the -n parameter."
+        echo "You must at least specify the name of the machine with the -n parameter."
+        echo
+        help_me
         exit 1
 fi
 
@@ -158,5 +178,5 @@ if [ -n "$ISO" ]; then
 else
         echo "No ISO added."
 fi
-echo "Thank you."
-exit
+
+exit 0
