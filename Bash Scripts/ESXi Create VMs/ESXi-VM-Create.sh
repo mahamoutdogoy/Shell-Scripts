@@ -2,17 +2,17 @@
 
 help_me() {
         echo "Usage: ./visteon_vm_setup.sh <parameters>"
+	echo
+	echo "Please choose parameters for the new VM:"
+	echo "-n: Choose a name"
+	echo "-c: Choose CPU count"
+	echo "-i: Add ISO image location"
+	echo "-r: Add RAM size in MB"
+	echo "-s: Add storage size in GB"
+	echo "-t: Choose the OS Type: Linux/Windows"
         echo
-        echo "Please choose parameters for the new VM:"
-        echo "-n: Choose a name"
-        echo "-c: Choose CPU count"
-        echo "-i: Add ISO image location"
-        echo "-r: Add RAM size in MB"
-        echo "-s: Add storage size in GB"
-        echo "-t: Choose the OS Type: Linux/Windows"
-        echo
-        echo "Default setup: CPU: 1, RAM: 1024MB, Storage: 20GB"
-        echo
+	echo "Default setup: CPU: 1, RAM: 1024MB, Storage: 20GB"
+	echo
 }
 
 ### Default Setup: ###
@@ -81,13 +81,25 @@ do
                         fi
                         ;;
 
-                t)      : ;;
+		t)	
+			OSTYPE=${OPTARG}
+			if [[ `echo $OSTYPE` != "Linux" ]] && [[ `echo $OSTYPE` != "Windows" ]]; then 
+				ERR=true
+				MSG="$MSG | Please choose between Linux or Windows options."
+			else
+				if [[ "$OSTYPE" == "Linux" ]]; then
+					SETOSTYPE="ubuntu-64"
+				elif [[ "$OSTYPE" == "Windows" ]]; then 
+					SETOSTYPE="windows7-64"
+				fi
+			fi
+			;; 
 
                 h)      help_me ; exit ;;
 
-                \?)
-                        echo "Unknown parameter: -$OPTARG" >&2
-                        help_me
+                \?) 
+                        echo "Unknown parameter: -$OPTARG" >&2 
+                        help_me 
                         exit 1;;
 
                 :)      echo "Missing parameter argument for -$OPTARG" >&2; help_me; exit 1;;
@@ -98,8 +110,8 @@ done
 
 if $FLAG; then
         echo "You have at least to specify the name of the machine with the -n parameter."
-        echo
-        help_me
+	echo
+	help_me
         exit 1
 fi
 
@@ -113,16 +125,16 @@ if [ -d "$NAME" ]; then
         exit
 fi
 
-#Creating the folder for the Virtual Machine
+#Creating Virtual Machine folder 
 mkdir ${NAME}
 
-#Creating the actual Virtual Disk file (the HDD) with vmkfstools
+#Creating the actual Virtual Disk file (the HDD)
 vmkfstools -c "${SIZE}"G -a lsilogic $NAME/$NAME.vmdk
 
 #Creating the config file
 touch $NAME/$NAME.vmx
 
-#writing information into the configuration file
+#Filling the configuration file
 cat << EOF > $NAME/$NAME.vmx
 
 config.version = "8"
@@ -159,14 +171,10 @@ ethernet0.present = "TRUE"
 ethernet0.virtualDev = "e1000"
 ethernet0.networkName = "VM Network"
 ethernet0.generatedAddressOffset = "0"
-#### Old One ####
-guestOS = "other26xlinux-64"
-#######
-#guestOS = "ubuntu-64"
+guestOS = "$SETOSTYPE"
 EOF
 
 #Adding Virtual Machine to VM register:
-
 MYVM=`vim-cmd solo/registervm /vmfs/volumes/datastore1/${NAME}/${NAME}.vmx`
 
 #Starting the virtual machine:
@@ -177,6 +185,7 @@ echo "Name: ${NAME}"
 echo "CPU: ${CPU}"
 echo "RAM: ${RAM}"
 echo "HDD-size: ${SIZE}"
+echo "OS Type: ${OSTYPE}"
 
 if [ -n "$ISO" ]; then
         echo "ISO: ${ISO}"
