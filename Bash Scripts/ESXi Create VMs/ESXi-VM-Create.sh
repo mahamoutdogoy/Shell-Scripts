@@ -7,8 +7,8 @@ help_me() {
         echo "-n: Choose a name"
         echo "-c: Choose CPU count"
         echo "-i: Add ISO image location"
-        echo "-r Add RAM size in MB"
-        echo "-s Add storage size in GB"
+        echo "-r: Add RAM size in MB"
+        echo "-s: Add storage size in GB"
         echo
         echo "Default setup: CPU: 1, RAM: 1024MB, Storage: 20GB"
         echo
@@ -94,7 +94,7 @@ do
 done
 
 if $FLAG; then
-        echo "You must at least specify the name of the machine with the -n parameter."
+        echo "You have at least to specify the name of the machine with the -n parameter."
         echo
         help_me
         exit 1
@@ -154,9 +154,15 @@ pciBridge7.functions = "8"
 ethernet0.pciSlotNumber = "32"
 ethernet0.present = "TRUE"
 ethernet0.virtualDev = "e1000"
-ethernet0.networkName = "Inside"
+### Warning!!! ###
+ethernet0.networkName = "VM Network"
+##################
 ethernet0.generatedAddressOffset = "0"
+
+########
 guestOS = "other26xlinux-64"
+#######
+
 EOF
 
 #Adding Virtual Machine to VM register:
@@ -164,7 +170,6 @@ EOF
 MYVM=`vim-cmd solo/registervm /vmfs/volumes/datastore1/${NAME}/${NAME}.vmx`
 
 #Starting the virtual machine:
-
 #vim-cmd vmsvc/power.on $MYVM
 
 echo "The Virtual Machine is now set with the following configuration:"
