@@ -9,6 +9,7 @@ help_me() {
         echo "-i: Add ISO image location"
         echo "-r: Add RAM size in MB"
         echo "-s: Add storage size in GB"
+        echo "-t: Choose the OS Type: Linux/Windows"
         echo
         echo "Default setup: CPU: 1, RAM: 1024MB, Storage: 20GB"
         echo
@@ -25,7 +26,7 @@ ERR=false
 
 ######################
 
-while getopts n:c:i:r:s:h parameter
+while getopts t:n:c:i:r:s:h parameter
 do
         case $parameter in
                 n)
@@ -79,6 +80,8 @@ do
                                 MSG="$MSG | The HDD size has to be an integer."
                         fi
                         ;;
+
+                t)      : ;;
 
                 h)      help_me ; exit ;;
 
@@ -154,15 +157,12 @@ pciBridge7.functions = "8"
 ethernet0.pciSlotNumber = "32"
 ethernet0.present = "TRUE"
 ethernet0.virtualDev = "e1000"
-### Warning!!! ###
 ethernet0.networkName = "VM Network"
-##################
 ethernet0.generatedAddressOffset = "0"
-
-########
+#### Old One ####
 guestOS = "other26xlinux-64"
 #######
-
+#guestOS = "ubuntu-64"
 EOF
 
 #Adding Virtual Machine to VM register:
