@@ -1,7 +1,7 @@
 #!/bin/sh
 
 help_me() {
-        echo "Usage: ./visteon_vm_setup.sh <parameters>"
+        echo "Usage: ./create_vm.sh <parameters>"
 	echo
 	echo "Please choose parameters for the new VM:"
 	echo "-n: Choose a name"
