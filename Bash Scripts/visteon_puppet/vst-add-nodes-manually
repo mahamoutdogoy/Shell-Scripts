@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "Add as many new nodes IPs as you wish:"
+echo "Hit Ctrl + C to break."
+:> /tmp/ip_nodes.txt
+
+while :; do
+	read ip
+	echo $ip >> /tmp/ip_nodes.txt
+done

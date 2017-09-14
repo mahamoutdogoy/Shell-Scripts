@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "--- Current Jenkins Slaves ---"
+cat /root/visteon_puppet/lists/slaves.txt

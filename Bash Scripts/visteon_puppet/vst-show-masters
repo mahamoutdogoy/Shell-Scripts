@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "--- Current Jenkins Masters ---"
+cat /root/visteon_puppet/lists/masters.txt

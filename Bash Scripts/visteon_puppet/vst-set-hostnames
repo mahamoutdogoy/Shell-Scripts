@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "--- Please add a new hostname for each node ---"
+
+arr=(`cat /tmp/ip_nodes.txt`)
+
+for i in ${arr[*]} ; do 
+	echo "Hosname for $i?"
+	read name
+	ssh $i "hostnamectl set-hostname $name"
+	ssh $i "sed -i '2d' /etc/hosts"
+	ssh $i "sed -i '2i 127.0.1.1       $name' /etc/hosts"	
+	echo 	
+done

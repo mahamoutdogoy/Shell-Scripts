@@ -1,0 +1,8 @@
+#!/bin/bash
+
+arr1=(`cat /root/visteon_puppet/lists/slaves.txt`)
+cat /root/visteon_puppet/lists/slaves.pp > /etc/puppetlabs/code/environments/production/manifests/site.pp
+
+for i in ${arr1[*]} ; do
+	ssh $i "/opt/puppetlabs/bin/puppet agent -t"
+done

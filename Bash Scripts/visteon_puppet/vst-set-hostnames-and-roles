@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "--- Please add a new hostname for each node ---"
+
+arr=(`cat /tmp/ip_nodes.txt`)
+:> /root/visteon_puppet/lists/masters.txt
+:> /root/visteon_puppet/lists/slaves.txt
+
+for i in ${arr[*]} ; do 
+	echo "Hosname for $i?"
+	read name
+	ssh $i "hostnamectl set-hostname $name"
+	ssh $i "sed -i '2d' /etc/hosts"
+	ssh $i "sed -i '2i 127.0.1.1       $name' /etc/hosts"	
+	echo
+	
+	echo "Role for $i?"
+	echo "Please choose between master and slave"
+	read role
+	if [[ $role == "master" ]] ; then 
+		echo "$i" >> /root/visteon_puppet/lists/masters.txt
+	else
+		echo "$i" >> /root/visteon_puppet/lists/slaves.txt
+	fi		
+	
+	echo "--------------------------------------"
+done

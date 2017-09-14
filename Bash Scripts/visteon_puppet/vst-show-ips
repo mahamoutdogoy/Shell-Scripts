@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "--- New Nodes ---"
+cat /tmp/ip_nodes.txt

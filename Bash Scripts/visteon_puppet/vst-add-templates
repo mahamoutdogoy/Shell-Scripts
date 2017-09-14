@@ -1,0 +1,14 @@
+#!/bin/bash
+
+arr1=(`cat /root/visteon_puppet/lists/masters.txt`)
+
+for i in ${arr1[*]} ; do 
+	
+	ssh $i "rm -rf /var/lib/jenkins/jobs"	
+	scp /root/visteon_puppet/jobs/jobs.tar.gz $i:/var/lib/jenkins/        
+        ssh $i "cd /var/lib/jenkins; tar zfx jobs.tar.gz"
+	ssh $i "rm -f /var/lib/jenkins/jobs.tar.gz"
+        ssh $i "chown -R jenkins:jenkins /var/lib/jenkins/jobs"
+	ssh $i "service jenkins restart"
+done
+

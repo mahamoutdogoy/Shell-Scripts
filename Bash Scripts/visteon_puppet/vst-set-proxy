@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cp /root/visteon_puppet/proxy/code/*.sh /root/visteon_puppet/proxy
+
+echo "--- Please add your porxy credentials ---"
+echo
+read -p "Your Visteon ID: " id
+read -p "Your password: " pass
+
+sed -i "s/dummyid/$id/g" /root/visteon_puppet/proxy/proxy_set_up.sh
+sed -i "s/dummypass/$pass/g" /root/visteon_puppet/proxy/proxy_set_up.sh
+
+sed -i "s/dummyid/$id/g" /root/visteon_puppet/proxy/exports.sh
+sed -i "s/dummypass/$pass/g" /root/visteon_puppet/proxy/exports.sh
+
+arr=(`cat /tmp/ip_nodes.txt`)
+
+for i in ${arr[*]} ; do
+	scp /root/visteon_puppet/proxy/*.sh $i:/root
+	ssh $i "bash /root/proxy_set_up.sh"
+	ssh $i "bash /root/exports.sh"
+done

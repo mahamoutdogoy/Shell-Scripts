@@ -1,0 +1,9 @@
+#!/bin/bash
+
+arr1=`puppet cert list --all | grep -v "master" | awk {'print $2'} | sed -e 's/\"//g'`
+
+for i in ${arr1[*]} ; do 
+	/opt/puppetlabs/bin/puppet node clean $i
+done
+
+:> /tmp/ip_nodes.txt

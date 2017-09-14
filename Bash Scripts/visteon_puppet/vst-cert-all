@@ -1,0 +1,11 @@
+#!/bin/bash
+
+arr=(`cat /tmp/ip_nodes.txt`)
+
+for i in ${arr[*]} ; do
+	ssh $i "rm -rf /etc/puppetlabs/puppet/ssl"
+	ssh $i "/opt/puppetlabs/bin/puppet agent --test"
+	puppet cert sign --all
+done
+
+puppet cert sign --all
